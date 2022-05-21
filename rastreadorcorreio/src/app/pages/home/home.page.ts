@@ -1,3 +1,4 @@
+import { CorreioService } from './../../services/correio.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private correio: CorreioService) {}
 
+  //NX598805383BR
+
+  localizarObjeto(evento){
+    let codigoObjeto = evento.detail.value;
+
+    this.correio.localizarObjeto(codigoObjeto)
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+  }
 }
